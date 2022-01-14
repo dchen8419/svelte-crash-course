@@ -4,6 +4,22 @@
 	let color = 'blue';
 	let showText = false;
 
+	//Each loop example
+	let users = [
+		{
+			id: '1',
+			name: 'David'
+		},
+		{
+			id: '2',
+			name: 'Laura'
+		},
+		{
+			id: '3',
+			name: 'Lunas'
+		},
+	]
+
 	//Below is a reactive value
 	$: name = firstname + ' ' + lastName;
 
@@ -12,6 +28,7 @@
 	const toggle = () => {
 		color = color === 'blue' ? 'red' : 'blue';
 		showText = !showText
+		users = [...users, { id: '4', name: 'William'}]
 	}
 </script>
 
@@ -25,8 +42,12 @@
 		{:else}
 		<p>No Text</p>
 	{/if}
-	<button on:click={ toggle }>Click
-	</button>
+	<button on:click={ toggle }>Click</button>
+
+
+	{#each users as user (user.id)}
+			<h3>{user.id}: {user.name}</h3>
+	{/each}
 </main>
 
 <style>
