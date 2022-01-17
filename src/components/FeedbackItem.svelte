@@ -1,12 +1,15 @@
 <script>
-    import {createEventDispatcher} from 'svelte'
+    import {FeedbackStore} from '../stores'
+    // import {createEventDispatcher} from 'svelte'
     import Card from './Card.svelte';
     export let item
 
-    const dispatch = createEventDispatcher()
+    // const dispatch = createEventDispatcher()
 
     const handleDelete = (itemId) => {
-        dispatch('delete-feedback', itemId)
+        FeedbackStore.update((currentFeedback) => {
+            return currentFeedback.filter(intem => intem.id != itemId)
+        })
     }
 </script>
 
@@ -28,7 +31,7 @@
         left: -10px;
         width: 50px;
         height: 50px;
-        background: #ff6a95;
+        background: #002e93;
         color: #fff;
         border: 1px #eee solid;
         border-radius: 50%;
